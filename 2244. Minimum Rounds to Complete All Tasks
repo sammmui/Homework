@@ -1,0 +1,27 @@
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+
+class Solution {
+public:
+    int minimumRounds(std::vector<int>& tasks) {
+        std::unordered_map<int, int> task_counts;
+        for (int task : tasks) {
+            task_counts[task]++;
+        }
+        
+        int total_rounds = 0;
+
+        for (auto& p : task_counts) {
+            int count = p.second;
+            
+            if (count == 1) {
+                return -1; 
+            }
+
+            total_rounds += (count + 2) / 3;
+        }
+        
+        return total_rounds;
+    }
+};
